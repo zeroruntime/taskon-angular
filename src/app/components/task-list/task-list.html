@@ -1,0 +1,61 @@
+<h1 class="text-3xl font-bold text-center mb-4">TASKON</h1>
+
+  <div class="w-full max-w-3xl bg-white shadow-lg rounded-lg p-6">
+    <div class="flex mx-auto row-auto">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4 mr-4">My Tasks</h2>
+    <button (click)="openModal()" class="text-xl py-2 px-4 text-white rounded-lg bg-red-500 mb-6 float-end">Add Task</button>
+</div>
+    <ul class="space-y-4">
+      @for (item of tasksList; track $index) {
+      <li class="flex flex-col md:flex-row md:items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition">
+        <div class="flex-1 mr-4">
+          @if (item.completed == true) {
+          <h3 class="text-lg font-semibold text-gray-800 line-through">{{item.title}}</h3>
+          <p class="text-sm text-gray-600 line-through">{{item.description}}</p>
+          <p class="text-xs text-gray-500 mt-1">Created: 2025-10-20</p>
+          }
+          @else {
+          <h3 class="text-lg font-semibold text-gray-800">{{item.title}}</h3>
+          <p class="text-sm text-gray-600">{{item.description}}</p>
+          <p class="text-xs text-gray-500 mt-1">Created: 2025-10-20</p>
+          }
+        </div>
+        <div class="flex space-x-2 mt-3 md:mt-0">
+          <button (click)="markComplete(item.id)"  class="px-3 py-1 text-sm bg-green-500 text-white rounded hover:bg-green-600 transition mr-4">
+            Mark as Complete
+          </button>
+          <button (click)="onEdit(item)" class="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-green-600 transition mr-4">
+            Edit
+          </button>
+          <button (click)="deleteTask(item.id)" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition">
+            Delete
+          </button>
+        </div>
+      </li>
+    }
+      <!-- Completed Task Example -->
+      <!-- <li class="flex flex-col md:flex-row md:items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition">
+        <div class="flex-1">
+          <h3 class="text-lg font-semibold text-gray-400 line-through">Finish project</h3>
+          <p class="text-sm text-gray-500 line-through">Submit the report and finalize documentation.</p>
+          <p class="text-xs text-gray-500 mt-1">Created: 2025-10-18</p>
+        </div>
+        <div class="flex space-x-2 mt-3 md:mt-0">
+          <button class="px-3 py-1 text-sm bg-gray-400 text-white rounded cursor-not-allowed">
+            Completed
+          </button>
+          <button class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition">
+            Delete
+          </button>
+        </div>
+      </li> -->
+    </ul>
+  </div>
+
+  <app-task-form
+  *ngIf="showModal"
+  [taskData]="taskObj"
+  (close)="closeModal()"
+    (refresh)="getTasks()"
+
+></app-task-form>
