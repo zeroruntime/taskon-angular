@@ -1,4 +1,5 @@
 # Taskon
+TaskOn is a clean and simple to-do app built with Angular and Django, my first hands-on project for mastering full-stack development.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
 
