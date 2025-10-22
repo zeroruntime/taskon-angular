@@ -24,9 +24,16 @@
           <button (click)="markComplete(item.id)"  class="px-3 py-1 text-sm bg-green-500 text-white rounded hover:bg-green-600 transition mr-4">
             Mark as Complete
           </button>
-          <button (click)="onEdit(item)" class="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-green-600 transition mr-4">
+          @if (item.completed == true) {
+          <button disabled (click)="onEdit(item)" class="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600 transition mr-4">
             Edit
           </button>
+        }
+          @else {
+          <button (click)="onEdit(item)" class="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600 transition mr-4">
+            Edit
+          </button>
+          }
           <button (click)="deleteTask(item.id)" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition">
             Delete
           </button>
